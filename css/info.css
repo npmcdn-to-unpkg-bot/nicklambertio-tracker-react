@@ -1,0 +1,22 @@
+/*
+FONTS
+
+font-family: 'Homemade Apple', cursive;
+font-family: 'Calligraffitti', cursive;
+font-family: 'Quattrocento', serif;
+
+*/
+
+#info {
+
+}
+.info-title-container {
+
+}
+.info-title {
+  font-family: 'Homemade Apple', cursive;
+  font-size: 4em;
+  text-align: center;
+  margin: 0;
+  line-height: 1.7;
+}

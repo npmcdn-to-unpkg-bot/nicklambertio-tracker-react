@@ -1,0 +1,25 @@
+/*
+FONTS
+
+font-family: 'Homemade Apple', cursive;
+font-family: 'Calligraffitti', cursive;
+font-family: 'Quattrocento', serif;
+
+*/
+
+html {
+  background:#333;
+  color:white;
+  font-family: 'Quattrocento', serif;
+  margin:0;
+}
+body {
+  margin:0;
+}
+#info {
+  display:inline-block;
+  width:30%;
+  background-color:#777;
+  height:100vh;
+  padding:1em;
+}

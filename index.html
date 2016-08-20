@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Italy - nicklambert.io</title>
+    <link href="https://fonts.googleapis.com/css?family=Calligraffitti|Homemade+Apple|Quattrocento:400,700" rel="stylesheet">
+     <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+    <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
+    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="js/vendor/fetch/fetch.js"></script>
+     <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="css/layout.css"></link>
+    <link rel="stylesheet" href="css/info.css"></link>
+    <script>
+      var photoData = false,
+          photoError = false,
+          apiString = 'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=dc6cbc314ce97a5cd63af27eda984c3b&user_id=144734064%40N08&extras=+description%2C+license%2C+date_upload%2C+date_taken%2C+owner_name%2C+icon_server%2C+original_format%2C+last_update%2C+geo%2C+tags%2C+machine_tags%2C+o_dims%2C+views%2C+media%2C+path_alias%2C+url_sq%2C+url_t%2C+url_s%2C+url_q%2C+url_m%2C+url_n%2C+url_z%2C+url_c%2C+url_l%2C+url_o&format=json&nojsoncallback=1';
+      fetch(apiString)
+        .then(function(response) {
+          return response.json()
+        }).then(function(json) {
+          console.log(json);
+          photoData = json.photos;
+        }).catch(function(ex) {
+          photoError = ex;
+        });
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <main>
+        <section id="info">
+          <div class="info-title-container">
+            <h1 class="info-title">
+              Italia
+            </h1>
+            <p>
+              Slogan here
+            </p>
+          </div>
+          <div class="days-container">
+            <div class="day">
+              <h2>
+                Day 0
+              </h2>
+              <ul>
+                <li>
+                  image and location
+                </li>
+              </ul>
+            </div>
+          </div>
+          <section id="gallery">
+
+          </section>
+        </section>
+        <section id="map">
+
+        </section>
+      </main>
+    </div>
+    <!-- <script src="js/main.js" type="text/babel"></script> -->
+    <script type="text/babel">
+      function checkForData(data, interval){
+        if (data){
+          console.log('Start the App');
+          clearInterval(interval);
+        }
+      }
+      var theInterval = setInterval(function(){
+        checkForData(photoData, theInterval);
+      },100);
+
+      var mymap = L.map('map').setView([51.505, -0.09], 13);
+      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+          attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+          maxZoom: 18,
+          id: 'your.mapbox.project.id',
+          accessToken: 'your.mapbox.public.access.token'
+      }).addTo(mymap);
+    </script>
+  </body>
+</html>
